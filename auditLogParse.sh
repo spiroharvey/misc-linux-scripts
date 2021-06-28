@@ -1,6 +1,15 @@
 #!/bin/bash
+#
+# by Spiro Harvey <spiro.harvey@protonmail.com>
+# Released under GPLv3
+# Date: Jun 2021
+#
+# Description: Parses and displays audit.log events
+# Usage: auditLogParse.sh < /var/log/audit/audit.log | most
+#
 
 # Colours
+# taken from: https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -58,6 +67,7 @@ do
 		[[ "$word" == addr=* ]] && \
 								recAddr=$(echo ${word##*=} | tr -d ,)
 	done
-	printf "$txtwht${timestamp} [$bldylw${recType}$txtwht]\t$bldwht${recAcct}\t$txtwht($txtblu${recExe}$txtwht) $txtcyn${recHost} ${recAddr}$txtrst\n"
+	printf "$txtwht${timestamp} [$bldylw${recType}$txtwht]\t$bldwht${recAcct}\t"
+	printf "$txtwht($txtblu${recExe}$txtwht) $txtcyn${recHost} ${recAddr}$txtrst\n"
 done
 
