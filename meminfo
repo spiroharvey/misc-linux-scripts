@@ -1,0 +1,25 @@
+#!/bin/bash
+# by Spiro
+
+function extract_value() {
+	grep ^${1}: /proc/meminfo | awk '{print $2}'
+}
+
+
+function show_value() {
+	echo $1 | awk '{printf "%.3f", $1/1024/1024}'
+}
+
+
+memTotal=$(extract_value MemTotal)
+memFree=$(extract_value MemFree)
+memBuffers=$(extract_value Buffers)
+memCache=$(extract_value Cached)
+memFreeActual=$(($memFree + $memBuffers + $memCache))
+
+
+
+printf "[1mTotal Memory     : [33m%8.3f [0mGB\n" $(show_value $memTotal)
+printf "[1mReported Free Mem: [31m%8.3f [0mGB\n" $(show_value $memFree)
+printf "[1mActual Free Mem  : [32m%8.3f [0mGB\n" $(show_value $memFreeActual)
+
