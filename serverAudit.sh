@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Server Audit Tool
-# by Spiro
+# Linux Server Audit Tool, v1
+# by Spiro Harvey <spiro.harvey@protonmail.com>, Nov 2021
 # meminfo functions taken from https://github.com/spiroharvey/random-scripts
 
 
@@ -11,6 +11,10 @@ if [ $(id -u) -ne 0 ]; then
 	exit 1
 fi
 
+
+function usage() {
+	printf "Usage: %s <hostname> [>outputfile] \n",$0
+}
 
 # function name starts with underscore so it's not
 # confused with existing indent program
