@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Linux Server Audit Tool, v1
+# RHEL Linux Server Audit Tool, v1
 # by Spiro Harvey <spiro.harvey@protonmail.com>, Nov 2021
 # meminfo functions taken from https://github.com/spiroharvey/random-scripts
 
